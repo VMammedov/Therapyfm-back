@@ -1,0 +1,374 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles {
+    <link rel="stylesheet" type="text/css" href="~/css/demo1.min.css">
+}
+
+<main class="main">
+    <div class="page-content">
+        <section class="intro-section">
+            <div class="owl-carousel owl-theme row owl-dot-inner owl-dot-white intro-slider animation-slider cols-1 gutter-no"
+                 data-owl-options="{
+                        'nav': false,
+                        'dots': true,
+                        'loop': false,
+                        'items': 1,
+                        'autoplay': false,
+                        'autoplayTimeout': 8000
+                    }">
+                <div class="banner banner-fixed intro-slide1" style="background-color: #46b2e8;">
+                    <figure>
+                        <img src="~/images/slides/slide1.jpg" alt="intro-banner" width="1903"
+                             height="630" style="background-color: #34ace5;" />
+                    </figure>
+                    <div class="container">
+                        <div class="banner-content y-50">
+                            <h2 class="banner-title font-weight-bold text-white lh-1 ls-md slide-animate"
+                                data-animation-options="{'name': 'fadeInUpShorter', 'duration': '1.2s', 'delay': '1s'}">
+                                @Localizer["Slider1"]
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="banner banner-fixed intro-slide2" style="background-color: #dddee0;">
+                    <figure>
+                        <img src="~/images/slides/slide2.jpg" alt="intro-banner" width="1903"
+                             height="630" style="background-color: #d8d9d9;" />
+                    </figure>
+                    <div class="container">
+                        <div class="banner-content y-50 ml-auto text-right">
+                            <h4 class="banner-subtitle ls-s mb-1 slide-animate text-white"
+                                data-animation-options="{'name': 'fadeInUp', 'duration': '.7s'}">
+                                <strong class="font-weight-semi-bold ls-m">
+                                    @Localizer["Slider2"]
+                                </strong>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="banner banner-fixed video-banner intro-slide3" style="background-color: #dddee0;">
+                    <figure>
+                        <img src="~/images/slides/slide3.jpg" alt="intro-banner" width="1903"
+                             height="630" style="background-color: #d8d9d9;" />
+                    </figure>
+                    <div class="container">
+                        <div class="banner-content x-50 y-50 text-center">
+                            <h2 class="banner-title mb-3 text-white font-weight-bold text-uppercase ls-m slide-animate fadeInUp show-content" data-animation-options="{'name': 'fadeInUp', 'duration': '.7s', 'delay': '.5s'}" style="animation-duration: 0.7s; animation-delay: 0.5s;">
+                                @Localizer["Slider3"]
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <section class="pt-10 mt-7 mb-10 appear-animate" data-animation-options="{
+                    'delay': '.3s'
+                }">
+            <div class="container">
+                    <div class="row">
+                        <div class="col-xs-6 col-lg-4 mb-4">
+                            <div class="category category-default1 category-absolute banner-radius overlay-zoom">
+                                <a asp-controller="Contact" asp-action="Index">
+                                    <figure class="category-media">
+                                        <img src="~/images/categories/fue-sac-ekimi.jpg" alt="category" width="280"
+                                             height="280" style="background-color: #8c8c8d;" />
+                                    </figure>
+                                </a>
+                                <div class="category-content">
+                                    <h4 class="category-name font-weight-bold ls-l">
+                                        <a>@Localizer["FUE_H"]</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-lg-4 mb-4">
+                            <div class="category category-default1 category-absolute banner-radius overlay-zoom">
+                                <a asp-controller="Contact" asp-action="Index">
+                                    <figure class="category-media">
+                                        <img src="~/images/categories/safir-fue-sac-ekimi.jpg" alt="category"
+                                             width="280" height="280" style="background-color: #bcbdb7;" />
+                                    </figure>
+                                </a>
+                                <div class="category-content">
+                                    <h4 class="category-name font-weight-bold ls-l">
+                                        <a>@Localizer["S_FUE"]</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-lg-4 mb-4">
+                            <div class="category category-default1 category-absolute banner-radius overlay-zoom">
+                                <a asp-controller="Contact" asp-action="Index">
+                                    <figure class="category-media">
+                                        <img src="~/images/categories/dhi-sac-ekimi.jpg" alt="category" width="280"
+                                             height="280" style="background-color: #ececef;" />
+                                    </figure>
+                                </a>
+                                <div class="category-content">
+                                    <h4 class="category-name font-weight-bold ls-l">
+                                        <a>@Localizer["DHI"]</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-lg-4 mb-4">
+                            <div class="category category-default1 category-absolute banner-radius overlay-zoom">
+                                <a asp-controller="Contact" asp-action="Index">
+                                    <figure class="category-media">
+                                        <img src="~/images/categories/trassiz-sac-ekimi.jpg" alt="category"
+                                             width="280" height="280" style="background-color: #8c8c8d;" />
+                                    </figure>
+                                </a>
+                                <div class="category-content">
+                                    <h4 class="category-name font-weight-bold ls-l">
+                                        <a>@Localizer["UNBR"]</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-lg-4 mb-4">
+                            <div class="category category-default1 category-absolute banner-radius overlay-zoom">
+                                <a asp-controller="Contact" asp-action="Index">
+                                    <figure class="category-media">
+                                        <img src="~/images/categories/sakal-ekimi.jpg" alt="category" width="280"
+                                             height="280" style="background-color: #bcbdb7;" />
+                                    </figure>
+                                </a>
+                                <div class="category-content">
+                                    <h4 class="category-name font-weight-bold ls-l">
+                                        <a>@Localizer["Beard"]</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-lg-4 mb-4">
+                            <div class="category category-default1 category-absolute banner-radius overlay-zoom">
+                                <a asp-controller="Contact" asp-action="Index">
+                                    <figure class="category-media">
+                                        <img src="~/images/categories/kas-ekimi.jpg" alt="category" width="280"
+                                             height="280" style="background-color: #ececef;" />
+                                    </figure>
+                                </a>
+                                <div class="category-content">
+                                    <h4 class="category-name font-weight-bold ls-l">
+                                        <a>@Localizer["Brow"]</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-lg-4 mb-4">
+                            <div class="category category-default1 category-absolute banner-radius overlay-zoom">
+                                <a asp-controller="Contact" asp-action="Index">
+                                    <figure class="category-media">
+                                        <img src="~/images/categories/agiz-ve-cene-cerrahisi.jpg" alt="category"
+                                             width="280" height="280" style="background-color: #8c8c8d;" />
+                                    </figure>
+                                </a>
+                                <div class="category-content">
+                                    <h4 class="category-name font-weight-bold ls-l">
+                                        <a>@Localizer["M_J_S"]</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-lg-4 mb-4">
+                            <div class="category category-default1 category-absolute banner-radius overlay-zoom">
+                                <a asp-controller="Contact" asp-action="Index">
+                                    <figure class="category-media">
+                                        <img src="~/images/categories/implant.jpg" alt="category" width="280"
+                                             height="280" style="background-color: #bcbdb7;" />
+                                    </figure>
+                                </a>
+                                <div class="category-content">
+                                    <h4 class="category-name font-weight-bold ls-l">
+                                        <a>@Localizer["Implants"]</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-lg-4 mb-4">
+                            <div class="category category-default1 category-absolute banner-radius overlay-zoom">
+                                <a asp-controller="Contact" asp-action="Index">
+                                    <figure class="category-media">
+                                        <img src="~/images/categories/protez.jpg" alt="category" width="280"
+                                             height="280" style="background-color: #ececef;" />
+                                    </figure>
+                                </a>
+                                <div class="category-content">
+                                    <h4 class="category-name font-weight-bold ls-l">
+                                        <a>@Localizer["Prosthesis"]</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-lg-4 mb-4">
+                            <div class="category category-default1 category-absolute banner-radius overlay-zoom">
+                                <a asp-controller="Contact" asp-action="Index">
+                                    <figure class="category-media">
+                                        <img src="~/images/categories/pedodonti.jpg" alt="category" width="280"
+                                             height="280" style="background-color: #8c8c8d;" />
+                                    </figure>
+                                </a>
+                                <div class="category-content">
+                                    <h4 class="category-name font-weight-bold ls-l">
+                                        <a>@Localizer["Pedodontics"]</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-lg-4 mb-4">
+                            <div class="category category-default1 category-absolute banner-radius overlay-zoom">
+                                <a asp-controller="Contact" asp-action="Index">
+                                    <figure class="category-media">
+                                        <img src="~/images/categories/endodonti.jpg" alt="category" width="280"
+                                             height="280" style="background-color: #8c8c8d;" />
+                                    </figure>
+                                </a>
+                                <div class="category-content">
+                                    <h4 class="category-name font-weight-bold ls-l">
+                                        <a>@Localizer["Endodontics"]</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-lg-4 mb-4">
+                            <div class="category category-default1 category-absolute banner-radius overlay-zoom">
+                                <a asp-controller="Contact" asp-action="Index">
+                                    <figure class="category-media">
+                                        <img src="~/images/categories/dis-beyazlatma.jpg" alt="category" width="280"
+                                             height="280" style="background-color: #bcbdb7;" />
+                                    </figure>
+                                </a>
+                                <div class="category-content">
+                                    <h4 class="category-name font-weight-bold ls-l">
+                                        <a>@Localizer["Teeth_White"]</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-lg-4 mb-4">
+                            <div class="category category-default1 category-absolute banner-radius overlay-zoom">
+                                <a asp-controller="Contact" asp-action="Index">
+                                    <figure class="category-media">
+                                        <img src="~/images/categories/burun-estetigi-1.jpg" alt="category" width="280"
+                                             height="280" style="background-color: #8c8c8d;" />
+                                    </figure>
+                                </a>
+                                <div class="category-content">
+                                    <h4 class="category-name font-weight-bold ls-l">
+                                        <a>@Localizer["Rhinoplasty"]</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-lg-4 mb-4">
+                            <div class="category category-default1 category-absolute banner-radius overlay-zoom">
+                                <a asp-controller="Contact" asp-action="Index">
+                                    <figure class="category-media">
+                                        <img src="~/images/categories/dolgu.jpg" alt="category" width="280"
+                                             height="280" style="background-color: #bcbdb7;" />
+                                    </figure>
+                                </a>
+                                <div class="category-content">
+                                    <h4 class="category-name font-weight-bold ls-l">
+                                        <a>@Localizer["B/F"]</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-lg-4 mb-4">
+                            <div class="category category-default1 category-absolute banner-radius overlay-zoom">
+                                <a asp-controller="Contact" asp-action="Index">
+                                    <figure class="category-media">
+                                        <img src="~/images/categories/liposuction-2.jpg" alt="category" width="280"
+                                             height="280" style="background-color: #ececef;" />
+                                    </figure>
+                                </a>
+                                <div class="category-content">
+                                    <h4 class="category-name font-weight-bold ls-l">
+                                        <a>Liposuction</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-lg-4 mb-4">
+                            <div class="category category-default1 category-absolute banner-radius overlay-zoom">
+                                <a asp-controller="Contact" asp-action="Index">
+                                    <figure class="category-media">
+                                        <img src="~/images/categories/meme-buyutme-1.jpg" alt="category" width="280"
+                                             height="280" style="background-color: #8c8c8d;" />
+                                    </figure>
+                                </a>
+                                <div class="category-content">
+                                    <h4 class="category-name font-weight-bold ls-l">
+                                        <a>@Localizer["BA/R"]</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-lg-4 mb-4">
+                            <div class="category category-default1 category-absolute banner-radius overlay-zoom">
+                                <a asp-controller="Contact" asp-action="Index">
+                                    <figure class="category-media">
+                                        <img src="~/images/categories/leke-tedavisi.jpg" alt="category" width="280"
+                                             height="280" style="background-color: #bcbdb7;" />
+                                    </figure>
+                                </a>
+                                <div class="category-content">
+                                    <h4 class="category-name font-weight-bold ls-l">
+                                        <a>@Localizer["Spot_treatment"]</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-lg-4 mb-4">
+                            <div class="category category-default1 category-absolute banner-radius overlay-zoom">
+                                <a asp-controller="Contact" asp-action="Index">
+                                    <figure class="category-media">
+                                        <img src="~/images/categories/lazer-epilasyon.jpg" alt="category" width="280"
+                                             height="280" style="background-color: #ececef;" />
+                                    </figure>
+                                </a>
+                                <div class="category-content">
+                                    <h4 class="category-name font-weight-bold ls-l">
+                                        <a>@Localizer["Lazer"]</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-lg-4 mb-4">
+                            <div class="category category-default1 category-absolute banner-radius overlay-zoom">
+                                <a asp-controller="Contact" asp-action="Index">
+                                    <figure class="category-media">
+                                        <img src="~/images/categories/prp-tedavisi.jpg" alt="category" width="280"
+                                             height="280" style="background-color: #8c8c8d;" />
+                                    </figure>
+                                </a>
+                                <div class="category-content">
+                                    <h4 class="category-name font-weight-bold ls-l">
+                                        <a>@Localizer["PRP"]</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </section>
+    </div>
+</main>

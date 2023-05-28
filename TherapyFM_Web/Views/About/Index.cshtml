@@ -1,0 +1,109 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Text.Json;
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string currentController = ViewContext.RouteData.Values["controller"].ToString();
+    var path = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "", "data.json");
+    var json = File.ReadAllText(path);
+    var data = JsonSerializer.Deserialize<User>(json);
+}
+
+@section styles {
+    <link rel="stylesheet" type="text/css" href="~/css/style.min.css">
+}
+
+@section scripts {
+    <script src="~/lib/vendor/jquery.count-to/jquery.count-to.min.js"></script>
+}
+
+<main class="main">
+    <nav class="breadcrumb-nav">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="/Home/Index/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()"><i class="d-icon-home"></i></a></li>
+                <li>@Localizer["About"]</li>
+            </ul>
+        </div>
+    </nav>
+    <div class="page-header pl-4 pr-4" style="background-image: url('@Url.Content("~/images/subpages/about-us-banner.jpg")')">
+        <h3 class="page-subtitle font-weight-bold">@data.companyname</h3>
+        <h1 class="page-title font-weight-bold lh-1 text-white text-capitalize">@Localizer["About"]</h1>
+    </div>
+    <div class="page-content mt-10 pt-10">
+        <section class="about-section pb-10 appear-animate">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 mb-10 mb-lg-4">
+                        <h3 class="section-title lh-1 font-weight-bold">
+                            @Localizer["Header1_text"]
+                        </h3>
+                    </div>
+                    <div class="col-lg-8 ">
+                        <div class="row">
+                            <div class="col-md-4 mb-4">
+                                <div class="counter text-center text-dark">
+                                    <span class="count-to" data-to="35" data-refresh-interval="50">0</span>
+                                    <h5 class="count-title font-weight-bold text-body ls-md">@Localizer["Customers"]</h5>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="counter text-center text-dark">
+                                    <span class="count-to" data-to="50" data-refresh-interval="50">0</span>
+                                    <h5 class="count-title font-weight-bold text-body ls-md">@Localizer["Doctors"]</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="customer-section pb-10">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-7 mb-4">
+                        <figure>
+                            <img src="~/images/subpages/about-us-img-1.jpg" alt="Happy Customer" width="580"
+                                 height="507" class="banner-radius" style="background-color: #BDD0DE;" />
+                        </figure>
+                    </div>
+                    <div class="col-md-5 mb-4">
+                        <h3 class="section-title lh-1 font-weight-bold">@Localizer["Header2"]</h3>
+                        <p class="section-desc text-grey">
+                            @Localizer["Header2_text"]
+                        </p>
+                        <a href="/Contact/Index/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()" class="btn btn-dark btn-link btn-underline ls-m">
+                            @Localizer["Button_text"]<i class="d-icon-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="store-section pb-10">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 order-md-first mb-4">
+                        <h3 class="section-title lh-1 font-weight-bold">@Localizer["Header3"]</h3>
+                        <p class="section-desc text-grey">
+                            @Localizer["Header3_text"]
+                        </p>
+                        <a href="/Contact/Index/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()" class="btn btn-dark btn-link btn-underline ls-m">
+                            @Localizer["Button_text"]<i class="d-icon-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <figure>
+                            <img src="~/images/subpages/about-us-img-2.jpg" width="580" height="507"
+                                 class="banner-radius" style="background-color: #DEE6E8;" />
+                        </figure>
+                    </div>
+                </div>
+            </div>
+            <br />
+        </section>
+    </div>
+</main>

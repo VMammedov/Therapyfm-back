@@ -1,0 +1,118 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles {
+    <link rel="stylesheet" type="text/css" href="~/css/demo1.min.css">
+}
+
+<main class="main">
+    <div class="page-content">
+
+        <section class="pt-6 mb-10 appear-animate" data-animation-options="{'delay': '.3s'}">
+            <div class="container">
+                <div class="d-flex align-items-center justify-content-center">
+                    <h2 class="mb-10">@Localizer["Service_name"]</h2>
+                </div>
+                <div class="text-center mb-5">
+                    <p>@Localizer["Info_text"]</p>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-lg-4 mb-4">
+                        <div class="category category-default1 category-absolute banner-radius overlay-zoom">
+                            <a href="/Contact/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">
+                                <figure class="category-media">
+                                    <img src="~/images/categories/burun-estetigi-1.jpg" alt="category" width="280"
+                                         height="280" style="background-color: #8c8c8d;" />
+                                </figure>
+                            </a>
+                            <div class="category-content">
+                                <h4 class="category-name font-weight-bold ls-l">
+                                    <a href="/Contact/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["Rhinoplasty"]</a>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-lg-4 mb-4">
+                        <div class="category category-default1 category-absolute banner-radius overlay-zoom">
+                            <a href="/Contact/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">
+                                <figure class="category-media">
+                                    <img src="~/images/categories/dolgu.jpg" alt="category" width="280"
+                                         height="280" style="background-color: #bcbdb7;" />
+                                </figure>
+                            </a>
+                            <div class="category-content">
+                                <h4 class="category-name font-weight-bold ls-l">
+                                    <a href="/Contact/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["B/F"]</a>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-lg-4 mb-4">
+                        <div class="category category-default1 category-absolute banner-radius overlay-zoom">
+                            <a href="/Contact/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">
+                                <figure class="category-media">
+                                    <img src="~/images/categories/liposuction-2.jpg" alt="category" width="280"
+                                         height="280" style="background-color: #ececef;" />
+                                </figure>
+                            </a>
+                            <div class="category-content">
+                                <h4 class="category-name font-weight-bold ls-l">
+                                    <a href="/Contact/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">Liposuction</a>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-lg-4 mb-4">
+                        <div class="category category-default1 category-absolute banner-radius overlay-zoom">
+                            <a href="/Contact/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">
+                                <figure class="category-media">
+                                    <img src="~/images/categories/meme-buyutme-1.jpg" alt="category" width="280"
+                                         height="280" style="background-color: #8c8c8d;" />
+                                </figure>
+                            </a>
+                            <div class="category-content">
+                                <h4 class="category-name font-weight-bold ls-l">
+                                    <a href="/Contact/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["BA/R"]</a>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-lg-4 mb-4">
+                        <div class="category category-default1 category-absolute banner-radius overlay-zoom">
+                            <a href="/Contact/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">
+                                <figure class="category-media">
+                                    <img src="~/images/categories/leke-tedavisi.jpg" alt="category" width="280"
+                                         height="280" style="background-color: #bcbdb7;" />
+                                </figure>
+                            </a>
+                            <div class="category-content">
+                                <h4 class="category-name font-weight-bold ls-l">
+                                    <a href="/Contact/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["Spot_treatment"]</a>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-lg-4 mb-4">
+                        <div class="category category-default1 category-absolute banner-radius overlay-zoom">
+                            <a href="/Contact/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">
+                                <figure class="category-media">
+                                    <img src="~/images/categories/lazer-epilasyon.jpg" alt="category" width="280"
+                                         height="280" style="background-color: #ececef;" />
+                                </figure>
+                            </a>
+                            <div class="category-content">
+                                <h4 class="category-name font-weight-bold ls-l">
+                                    <a href="/Contact/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["Lazer"]</a>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>

@@ -1,0 +1,409 @@
+﻿@using System.IO
+@using System.Text.Json
+@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Globalization;
+@inject IViewLocalizer Localizer;
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment WebHostEnvironment
+
+@{
+    string currentController = ViewContext.RouteData.Values["controller"].ToString();
+    var path = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "", "data.json");
+    var json = File.ReadAllText(path);
+    var data = JsonSerializer.Deserialize<User>(json);
+    string waURL = "https://wa.me/" + data.whatsapp;
+
+    string directoryPath = System.IO.Path.Combine(WebHostEnvironment.WebRootPath, "images", "icons");
+
+    string fileNameM="";
+    if (Directory.Exists(directoryPath))
+    {
+        // Get all files in the folder
+        string[] files = Directory.GetFiles(directoryPath);
+        if (files.Length>0)
+        {
+            fileNameM = System.IO.Path.GetFileName(files[0]);
+        }
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>@data.companyname</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="~/images/logo.png">
+
+    <link rel="stylesheet" type="text/css" href="~/lib/vendor/fontawesome-free/css/all.min.css">
+
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" type="text/css" href="~/lib/vendor/owl-carousel/owl.carousel.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Main CSS File -->
+    @await RenderSectionAsync("styles", required: true)
+    <style>
+        .logo-img{
+            width: 120px !important;
+            height: 100px !important;
+            display: block !important;
+        }
+        .logo-footer-img-1{
+            width: 180px !important;
+            height: 150px !important;
+            display: block !important;
+        }
+        .logo-footer-img-2 {
+            width: 270px !important;
+            height: 240px !important;
+            display: block !important;
+        }
+        .logo-name{
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size:24px;
+            color:dimgray;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            left: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #1FC15C;
+            color: #FFF;
+            box-shadow: 2px 2px 3px #666;
+            text-decoration: none;
+        }
+
+        .wa-float {
+            margin-top: 16px;
+        }
+
+    </style>
+</head>
+<body class="home">
+    <div class="page-wrapper">
+        <header class="header">
+            <div class="header-top">
+                <div class="container">
+                    <div class="header-right">
+                        <div class="dropdown ml-5">
+                            <a href="#language">@CultureInfo.CurrentUICulture.DisplayName</a>
+                            <ul class="dropdown-box">
+                                <li>
+                                    <a href="@Url.Action("Index", currentController, new { culture = "en-US", returnUrl = Context.Request.Path })">ENG</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", currentController, new { culture = "az-Latn-AZ", returnUrl = Context.Request.Path })">AZE</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", currentController, new { culture = "tr-TR", returnUrl = Context.Request.Path })">TUR</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", currentController, new { culture = "ru-RU", returnUrl = Context.Request.Path })">RUS</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <span class="divider"></span>
+                        <a href="/Contact/Index/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()" class="contact d-lg-show"><i class="d-icon-map"></i>Contact</a>
+                    </div>
+                </div>
+            </div>
+            <!-- End HeaderTop -->
+            <div class="header-middle sticky-header fix-top sticky-content">
+                <div class="container">
+                    <div class="header-left">
+                        <a href="#" class="mobile-menu-toggle">
+                            <i class="d-icon-bars2"></i>
+                        </a>
+                        <a href="/Home/Index/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()" class="logo d-flex justify-content-between align-items-center">
+                            <img src="~/images/icons/@fileNameM" alt="logo" class="logo-img" />
+                            <h5 class="logo-name">@data.companyname</h5>
+                        </a>
+                        <nav class="main-nav">
+                            <ul class="menu">
+                                <li>
+                                    <a href="/Home/Index/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()" class="nav-title">@Localizer["Home"]</a>
+                                </li>
+                                <li>
+                                    <a href="/Hair/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()" class="nav-title">@Localizer["Hair"]</a>
+                                    <div class="megamenu">
+                                        <div class="row">
+                                            <div class="col-6 col-sm-4 col-md-3 col-lg-4">
+                                                <h4 class="menu-title">@Localizer["Hair_Ser"]</h4>
+                                                <ul>
+                                                    <li><a href="/Hair/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["FUE_H"]</a></li>
+                                                    <li><a href="/Hair/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["S_FUE"]</a></li>
+                                                    <li><a href="/Hair/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["DHI"]</a></li>
+                                                    <li><a href="/Hair/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["UNBR"]</a></li>
+                                                    <li><a href="/Hair/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["Beard"]</a></li>
+                                                    <li><a href="/Hair/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["Brow"]</a></li>
+                                                    <li><a href="/Hair/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["PRP"]</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-6 col-sm-4 col-md-3 col-lg-4 menu-banner menu-banner1 banner banner-fixed">
+                                                <figure>
+                                                    <img src="~/images/menu/hair.jpg" alt="Menu banner" width="221"
+                                                         height="330" />
+                                                </figure>
+                                                <div class="banner-content y-50">
+                                                    <h4 class="banner-subtitle font-weight-bold text-primary ls-m">
+                                                    </h4>
+                                                    <h3 class="banner-title font-weight-bold"></h3>
+                                                    <a class="btn btn-link btn-underline">
+                                                        <i class="d-icon-arrow-right"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <!-- End Megamenu -->
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="/Dental/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()" class="nav-title">@Localizer["Dental"]</a>
+                                    <div class="megamenu">
+                                        <div class="row">
+                                            <div class="col-6 col-sm-4 col-md-3 col-lg-4">
+                                                <h4 class="menu-title">@Localizer["Dental_Ser"]</h4>
+                                                <ul>
+                                                    <li><a href="/Dental/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["M_J_S"]</a></li>
+                                                    <li><a href="/Dental/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["Implants"]</a></li>
+                                                    <li><a href="/Dental/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["Prosthesis"]</a></li>
+                                                    <li><a href="/Dental/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["P/E"]</a></li>
+                                                    <li><a href="/Dental/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["Teeth_White"]</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-6 col-sm-4 col-md-3 col-lg-4 menu-banner menu-banner2 banner banner-fixed">
+                                                <figure>
+                                                    <img src="~/images/menu/dental.jpg" alt="Menu banner" width="221"
+                                                         height="330" />
+                                                </figure>
+                                                <div class="banner-content x-50 text-center">
+                                                    <h3 class="banner-title text-white text-uppercase"></h3>
+                                                    <h4 class="banner-subtitle font-weight-bold text-white mb-0"></h4>
+                                                </div>
+                                            </div>
+                                            <!-- End MegaMenu -->
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="/Aesthetic/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()" class="nav-title">@Localizer["Aesthetic"]</a>
+                                    <div class="megamenu">
+                                        <div class="row">
+                                            <div class="col-6 col-sm-4 col-md-3 col-lg-4">
+                                                <h4 class="menu-title">@Localizer["Aesthetic_Ser"]</h4>
+                                                <ul>
+                                                    <li><a href="/Aesthetic/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["Rhinoplasty"]</a></li>
+                                                    <li><a href="/Aesthetic/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["B/F"]</a></li>
+                                                    <li><a href="/Aesthetic/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">Liposuction</a></li>
+                                                    <li><a href="/Aesthetic/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["BA/R"]</a></li>
+                                                    <li><a href="/Aesthetic/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["Spot_treatment"]</a></li>
+                                                    <li><a href="/Aesthetic/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["Lazer"]</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-6 col-sm-4 col-md-3 col-lg-4 menu-banner menu-banner2 banner banner-fixed">
+                                                <figure>
+                                                    <img src="~/images/menu/aethtetic.jpg" alt="Menu banner" width="221"
+                                                         height="330" />
+                                                </figure>
+                                                <div class="banner-content x-50 text-center">
+                                                    <h3 class="banner-title text-white text-uppercase"></h3>
+                                                    <h4 class="banner-subtitle font-weight-bold text-white mb-0"></h4>
+                                                </div>
+                                            </div>
+                                            <!-- End MegaMenu -->
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-title">Blog</a>
+                                </li>
+                                <li>
+                                    <a href="/About/Index/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()" class="nav-title">@Localizer["About"]</a>
+                                </li>
+                                <li>
+                                    <a href="/Contact/Index/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()" class="nav-title">@Localizer["Contact"]</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <!-- End Logo -->
+                    </div>
+                    <div class="header-right">
+                        <a href="tel:@data.whatsapp" class="icon-box icon-box-side">
+                            <div class="icon-box-icon mr-0 mr-lg-2">
+                                <i class="d-icon-phone"></i>
+                            </div>
+                            <div class="icon-box-content d-lg-show">
+                                <h4 class="icon-box-title">Call Us Now:</h4>
+                                <p>@data.whatsapp</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+    @RenderBody()
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="row align-items-center">
+                    <div class="col-lg-3">
+                            <a href="/Home/Index/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()" class="logo-footer-1">
+                                <img src="~/images/icons/@fileNameM" alt="logo-footer" class="logo-footer-img-1" />
+                        </a>
+                        <!-- End FooterLogo -->
+                    </div>
+                    <div class="col-lg-9">
+                        <p>
+                                @Localizer["About_footer_text_1"]
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- End FooterTop -->
+            <div class="footer-middle">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="widget widget-info">
+                                <h4 class="widget-title">@Localizer["Contact_info"]</h4>
+                            <ul class="widget-body">
+                                <li>
+                                    <label>Phone:</label>
+                                        <a href="tel:@data.whatsapp">@data.whatsapp</a>
+                                </li>
+                                <li>
+                                    <label>Email:</label>
+                                        <a href="#">@data.email</a>
+                                </li>
+                                <li>
+                                    <label>Address:</label>
+                                    <a href="#">Turkey, Istanbul</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- End Widget -->
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="widget ml-lg-4">
+                            <h4 class="widget-title">Pages</h4>
+                            <ul class="widget-body">
+                                <li>
+                                        <a href="/About/Index/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["About"]</a>
+                                </li>
+                                <li>
+                                        <a href="/Contact/Index/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["Contact"]</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- End Widget -->
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="widget ml-lg-4">
+                            <h4 class="widget-title">@data.companyname.ToUpper()</h4>
+                            <p>
+                                    @Localizer["About_footer_text_2"]
+                            </p>
+                        </div>
+                        <!-- End Widget -->
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="widget widget-instagram">
+                                <img src="~/images/icons/@fileNameM" alt="Logo" class="logo-footer-img-2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
+    </div>
+    <!-- Scroll Top -->
+    <a id="scroll-top" href="#top" title="Top" role="button" class="scroll-top"><i class="d-icon-arrow-up"></i></a>
+
+    <!-- MobileMenu -->
+    <div class="mobile-menu-wrapper">
+        <div class="mobile-menu-overlay">
+        </div>
+        <!-- End of Overlay -->
+        <a class="mobile-menu-close" href="#"><i class="d-icon-times"></i></a>
+        <!-- End of CloseButton -->
+        <div class="mobile-menu-container scrollable">
+            <!-- End of Search Form -->
+            <ul class="mobile-menu mmenu-anim">
+                <li>
+                    <a href="/Home/Index/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["Home"]</a>
+                </li>
+                <li>
+                    <a>@Localizer["Services"]</a>
+                    <ul class="mobile-menu mmenu-anim">
+                        <li>
+                            <a href="/Hair/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["Hair"]</a>
+                            <ul>
+                                <li><a href="/Hair/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["FUE_H"]</a></li>
+                                <li><a href="/Hair/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["S_FUE"]</a></li>
+                                <li><a href="/Hair/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["DHI"]</a></li>
+                                <li><a href="/Hair/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["UNBR"]</a></li>
+                                <li><a href="/Hair/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["Beard"]</a></li>
+                                <li><a href="/Hair/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["Brow"]</a></li>
+                                <li><a href="/Hair/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["PRP"]</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/Dental/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["Dental"]</a>
+                            <ul>
+                                <li><a href="/Dental/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["M_J_S"]</a></li>
+                                <li><a href="/Dental/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["Implants"]</a></li>
+                                <li><a href="/Dental/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["Prosthesis"]</a></li>
+                                <li><a href="/Dental/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["P/E"]</a></li>
+                                <li><a href="/Dental/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["Teeth_White"]</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/Aesthetic/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["Aesthetic"]</a>
+                            <ul>
+                                <li><a href="/Aesthetic/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["Rhinoplasty"]</a></li>
+                                <li><a href="/Aesthetic/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["B/F"]</a></li>
+                                <li><a href="/Aesthetic/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">Liposuction</a></li>
+                                <li><a href="/Aesthetic/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["BA/R"]</a></li>
+                                <li><a href="/Aesthetic/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["Spot_treatment"]</a></li>
+                                <li><a href="/Aesthetic/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["Lazer"]</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/About/Index/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["About"]</a>
+                </li>
+                <li>
+                    <a href="/Contact/Index/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()">@Localizer["Contact"]</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <a href="@waURL" class="whatsapp-float" target="_blank">
+        <i class="bx bxl-whatsapp bx-lg wa-float"></i>
+    </a>
+    <!-- Plugins JS File -->
+    <script src="~/lib/vendor/jquery/jquery.min.js"></script>
+    <script src="~/lib/vendor/elevatezoom/jquery.elevatezoom.min.js"></script>
+    <script src="~/lib/vendor/owl-carousel/owl.carousel.min.js"></script>
+    <!-- Main JS File -->
+    <script src="~/js/main.min.js"></script>
+    @await RenderSectionAsync("scripts", required: false)
+</body>
+</html>

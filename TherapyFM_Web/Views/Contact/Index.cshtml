@@ -1,0 +1,92 @@
+﻿@using System.IO
+@using System.Text.Json
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model EmailViewModel
+@inject IViewLocalizer Localizer;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string currentController = ViewContext.RouteData.Values["controller"].ToString();
+    var path = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "", "data.json");
+    var json = File.ReadAllText(path);
+    var data = JsonSerializer.Deserialize<User>(json);
+    string waURL = "https://wa.me/" + data.whatsapp;
+}
+
+@section styles {
+    <link rel="stylesheet" type="text/css" href="~/css/style.min.css">
+}
+
+@section scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+}
+
+<main class="main">
+    <nav class="breadcrumb-nav">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="/Home/Index/?ui-culture=@System.Threading.Thread.CurrentThread.CurrentCulture.ToString()"><i class="d-icon-home"></i></a></li>
+                <li>@Localizer["Contact"]</li>
+            </ul>
+        </div>
+    </nav>
+    <div class="page-header" style="background-image: url('@Url.Content("~/images/page-header/contact-us.jpg")')">
+        <h1 class="page-title font-weight-bold text-capitalize ls-l">@Localizer["Contact"]</h1>
+    </div>
+    <div class="page-content mt-10 mb-10 pt-7">
+        <section class="contact-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-6 ls-m mb-4">
+                        <div class="grey-section d-flex align-items-center h-100">
+                            <div>
+                                <h4 class="mb-2 text-capitalize">@Localizer["Left_header1"]</h4>
+                                <p>Turkey, Istanbul</p>
+
+                                <h4 class="mb-2 text-capitalize">@Localizer["Left_header2"]</h4>
+                                <p>
+                                    <a href="tel:#">@data.whatsapp</a>
+                                    <br>
+                                    <br>
+                                    <a
+                                       href="@waURL">
+                                        <i class='bx bxl-whatsapp bx-md'></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/therapy_fm/">
+                                        <i class='bx bxl-instagram bx-md'></i>
+                                    </a>                                    
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-sm-6 d-flex align-items-center">
+                        <div class="w-100">
+                            <form class="pl-lg-2" asp-controller="Contact" asp-action="SendEmail">
+                                <h4 class="ls-m font-weight-bold">@Localizer["Header1"]</h4>
+                                <p>
+                                    @Localizer["Info_message"]
+                                </p>
+                                <div class="row mb-2">
+                                    <div class="col-12 mb-4">
+                                        <textarea class="form-control" required asp-for="Message"
+                                                  placeholder="Comment*" id="m_message"></textarea>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <input class="form-control" asp-for="Name" id="m_name" type="text" placeholder="Name *" required>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <input class="form-control" asp-for="Email" id="m_mail" type="email" placeholder="Email *" required>
+                                    </div>
+                                </div>
+                                <button class="btn btn-dark btn-rounded">
+                                    @Localizer["Button_text"]<i class="d-icon-arrow-right"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
